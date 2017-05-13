@@ -1,5 +1,5 @@
-const linkMale = 'http://uinames.com/api/?ext&amount=1&gender=male';
-const linkFemale = 'http://uinames.com/api/?ext&amount=1&gender=female';
+const linkMale = 'https://uinames.com/api/?ext&amount=1&gender=male';
+const linkFemale = 'https://uinames.com/api/?ext&amount=1&gender=female';
 const maleButton = document.querySelector('#generate-male');
 const femaleButton = document.querySelector('#generate-female');
 let people = [];

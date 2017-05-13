@@ -1,23 +1,27 @@
----
-layout: default
----
-
-<div class="home">
-
-  <h1 class="page-heading">Posts</h1>
-
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
-
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
-
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Day 1. Name generator</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Quicksand:500,700" rel="stylesheet">
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+	<section id="timestamp">
+		<span></span>
+	</section>
+	<section class="buttons">
+		<button id="generate-male">Male</button>
+		<div class="logo"></div>
+		<button id="generate-female">Female</button>
+	</section>
+	<section class="app">
+		<div></div>
+		<div></div>
+		<div></div>
+	</section>
+	<section class="author"></section>
+	<script src="date.js"></script>
+	<script src="app.js"></script>
+</body>

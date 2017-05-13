@@ -1,7 +1,8 @@
 body {
 	font-family: 'Quicksand', sans-serif;
 	background-color: yellow;
-	background-image: 'pattern.png';
+	background-image: url(pattern.png);
+	background-blend-mode: difference;
 	}
 
 main {

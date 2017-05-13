@@ -1,7 +1,8 @@
 body {
 	font-family: 'Quicksand', sans-serif;
 	background-color: yellow;
-}
+	background-image: 'pattern.png';
+	}
 
 main {
 	width: 50%;

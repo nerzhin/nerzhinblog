@@ -16,6 +16,10 @@ const counterWon = document.querySelector('.won').querySelector('span');
 const counterLost = document.querySelector('.lost').querySelector('span');
 const counterKDA = document.querySelector('.kda').querySelector('span');
 const healthBar = document.querySelector('.health-bar').querySelector('div');
+
+const winAnimation = 'animated swing';
+const loseAnimation = 'animated wobble';
+const chosenOneAnimation = 'animated jello';
 let enemyHealth = 100;
 
 
@@ -36,11 +40,17 @@ function getEnemyAvatar() {
 	enemyAvatar.src = 'https://robohash.org/' + random + '.png?size=100x100';
 };
 
-rockBtn.addEventListener('click', function() { gameStarted(1); });
-paperBtn.addEventListener('click', function() { gameStarted(2); });
-scissorsBtn.addEventListener('click', function() { gameStarted(3); });
-lizardBtn.addEventListener('click', function() { gameStarted(4); });
-spockBtn.addEventListener('click', function() { gameStarted(5); });
+rockBtn.addEventListener('click', function() { rockBtn.className = 'animated jello'; gameStarted(1); });
+paperBtn.addEventListener('click', function() { paperBtn.className = 'animated jello'; gameStarted(2); });
+scissorsBtn.addEventListener('click', function() {  scissorsBtn.className = 'animated jello'; gameStarted(3); });
+lizardBtn.addEventListener('click', function() {  lizardBtn.className = 'animated jello'; gameStarted(4); });
+spockBtn.addEventListener('click', function() {  spockBtn.className = 'animated jello'; gameStarted(5); });
+
+rockBtn.addEventListener('animationend', function() { rockBtn.classList.remove('animated'); rockBtn.classList.remove('jello'); });
+paperBtn.addEventListener('animationend', function() { paperBtn.classList.remove('animated'); paperBtn.classList.remove('jello'); });
+scissorsBtn.addEventListener('animationend', function() { scissorsBtn.classList.remove('animated'); scissorsBtn.classList.remove('jello'); });
+lizardBtn.addEventListener('animationend', function() { lizardBtn.classList.remove('animated'); lizardBtn.classList.remove('jello'); });
+spockBtn.addEventListener('animationend', function() { spockBtn.classList.remove('animated'); spockBtn.classList.remove('jello'); });
 
 function yourMove(value) {
 	let elem = document.createElement('img');
@@ -66,7 +76,7 @@ function eraseBattleDeck() {
 
 function gameStarted(value) {
 	if (battleContainer.hasChildNodes()) {
-		eraseBattleDeck()
+		eraseBattleDeck();
 	};
 	yourMove(value);
 	enemyMove();
@@ -75,6 +85,14 @@ function gameStarted(value) {
 			getEnemyAvatar();
 			enemyHealth = 100;
 		};
+		let enemyAvatar = document.querySelector('.enemy-photo');
+		enemyAvatar.classList.add('animated');
+		enemyAvatar.classList.add('tada');
+		enemyAvatar.addEventListener('animationend', function() { enemyAvatar.classList.remove('animated'); enemyAvatar.classList.remove('tada'); });
+		document.querySelector('.your-pick').classList.add('animated');
+		document.querySelector('.your-pick').classList.add('swing');
+		document.querySelector('.enemy-pick').classList.add('animated');
+		document.querySelector('.enemy-pick').classList.add('wobble');
 		enemyHealth -= 15;
 		healthBar.style.width = enemyHealth.toString() + '%';
 		healthBar.textContent = enemyHealth.toString() + '%';
@@ -82,8 +100,16 @@ function gameStarted(value) {
 		counterWon.textContent = battleStats.won;
 		counterKDA.textContent = battleStats.kda();
 	} else if (battleStats.yourMove == battleStats.enemyMove) {
-		
+		//nothing here
+		document.querySelector('.your-pick').classList.add('animated');
+		document.querySelector('.your-pick').classList.add('rubberBand');
+		document.querySelector('.enemy-pick').classList.add('animated');
+		document.querySelector('.enemy-pick').classList.add('rubberBand');
 	} else {
+		document.querySelector('.enemy-pick').classList.add('animated');
+		document.querySelector('.enemy-pick').classList.add('swing');
+		document.querySelector('.your-pick').classList.add('animated');
+		document.querySelector('.your-pick').classList.add('wobble');
 		battleStats.lost++;
 		counterLost.textContent = battleStats.lost;
 		counterKDA.textContent = battleStats.kda();
@@ -122,4 +148,7 @@ function doIWon() {
 	return amIWon;
 };
 
+function animate() {
+
+}
 getEnemyAvatar();

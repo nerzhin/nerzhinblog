@@ -39,9 +39,11 @@ function enemyMove() {
 };
 
 function eraseBattleDeck() {
-	document.querySelector('.enemy-move').removeChild(document.querySelector('.enemy-pick'));
+	enemyMoveContainer.removeChild(document.querySelector('.enemy-pick'));
+	enemyMoveContainer.removeChild(document.querySelector('.your-pick'));
 };
 
+const enemyMoveContainer = document.querySelector('.enemy-move');
 const rockBtn = document.querySelector('#rock');
 const paperBtn = document.querySelector('#paper');
 const scissorsBtn = document.querySelector('#scissors');
@@ -55,10 +57,17 @@ lizardBtn.addEventListener('click', yourMove(4));
 spockBtn.addEventListener('click', yourMove(5));
 
 function yourMove(value) {
+	let elem = document.createElement('img');
 	battle.yourMove = value;
+	elem.src = images[value];
+	elem.className = 'your-pick';
+	enemyMoveContainer.appendChild(elem);
 };
 
 function game() {
+	if (enemyMoveContainer.hasChildNodes()) {
+		eraseBattleDeck();
+	};
 
 }
 

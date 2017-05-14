@@ -1,9 +1,8 @@
 body {
 	font-family: 'Roboto Condensed', sans-serif;
-	background-color: #B18E59;
+	background-color: white;
 	color: #1D0D08;
 	background-image: url('pattern.png');
-	background-blend-mode: difference;
 }
 
 h1 {
@@ -30,5 +29,5 @@ h1 {
 	height: 100px;
 	border: 2px solid black;
 	border-radius: 50%;
-	background-color: white;
+	background-color: lightgray;
 }

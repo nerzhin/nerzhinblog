@@ -5,16 +5,16 @@ const femaleButton = document.querySelector('#generate-female');
 let people = [];
 let displayMain = document.querySelector('section.app').querySelectorAll('div');
 let displayName = displayMain[0];
-let displaySurname = displayMain[1];
-let displayGender = displayMain[2];
+let displayAge = displayMain[1];
+let displayRegion = displayMain[2];
 
 function generateMale() {
 	fetch(linkMale)
 		.then(blob => blob.json())
 		.then(data => {
-			displayName.textContent = data.name,
-			displaySurname.textContent = data.surname,
-			displayGender.textContent = data.gender
+			displayName.textContent = data.title + ' ' + data.name + ' ' + data.surname,
+			displayAge.textContent = data.age + ' y.o.',
+			displayRegion.textContent = 'from ' + data.region
 		});
 };
 
@@ -22,9 +22,9 @@ function generateFemale() {
 	fetch(linkFemale)
 		.then(blob => blob.json())
 		.then(data => {
-			displayName.textContent = data.name,
-			displaySurname.textContent = data.surname,
-			displayGender.textContent = data.gender
+			displayName.textContent = data.title + ' ' + data.name + ' ' + data.surname,
+			displayAge.textContent = data.age + ' y.o.',
+			displayRegion.textContent = 'from ' + data.region
 		});
 };
 

@@ -43,6 +43,7 @@ main {
 	margin-left: 26%;
 	border: 0.4em solid black;
 	background-color: white;
+	font-size: 1.1em;
 }
 
 .author {
@@ -89,9 +90,11 @@ main {
 	}
 
 	.app {
-		min-height: 9em;
-		text-align: right;
+		min-height: 6em;
+		max-height: 9em;
+		text-align: center;
 		padding: 15px;
+		overflow: hidden;
 	}
     }
 
@@ -110,6 +113,14 @@ main {
     	body {
     		font-size: 50%;
     	}
+
+    	#generate-male,
+		#generate-female {
+			width: 65%;
+			min-height: 3.5em;
+			font-size: 2em;
+	}
+
     	
     }
 

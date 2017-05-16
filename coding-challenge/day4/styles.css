@@ -1,0 +1,113 @@
+/* typography */
+
+html {
+	font-size: 1.25em;
+}
+
+body {
+	font-family: 'Vollkorn', serif;
+	font-weight: 400;
+	line-height: 1.45;
+	color: #383635;
+	background-color: #bdf6c3;
+	background-image: url('topography.svg');
+}
+
+small {
+	font-family: 'Old Standard TT', serif;
+	font-weight: 400;
+	font-style: italic;
+	font-size: 0.707em;
+	color: #C692BF;
+}
+
+h1 {
+	margin-top: 0.5em;
+	margin-right: 0em;
+	margin-left: 0em;
+	margin-bottom: 0.05em;
+	line-height: 1.2;
+	font-size: 3.998em;
+	color: #9F5291;
+}
+
+/* button */
+.btn {
+	font-size: 0.707em;
+	text-align: center;
+	width: 45%;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.btn, .btn:link, .btn:visited {
+  background-color: white;
+  border-radius: 0.25em;
+  border-style: solid;
+  border-width: 1px;
+  color: #C692BF;
+  display: block;
+  font-family: avenir, helvetica, roboto, arial, sans-serif;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.5em;
+  padding: 1em 1.5em;
+  text-decoration: none;
+  text-transform: uppercase;
+  -webkit-transition: color 0.4s, background-color 0.4s, border 0.4s;
+  transition: color 0.4s, background-color 0.4s, border 0.4s; }
+
+.btn:hover, .btn:focus {
+  color: #7FDBFF;
+  border: 1px solid #7FDBFF;
+  -webkit-transition: background-color 0.3s, color 0.3s, border 0.3s;
+  transition: background-color 0.3s, color 0.3s, border 0.3s; }
+
+.btn:active {
+  color: #0074D9;
+  border: 1px solid #0074D9;
+  -webkit-transition: background-color 0.3s, color 0.3s, border 0.3s;
+  transition: background-color 0.3s, color 0.3s, border 0.3s; }
+
+/* --- */
+
+input {
+	width: 85%;
+	margin-right: auto;
+	margin-left: auto;
+	font-size: 2em;
+	line-height: 1.2;
+	min-height: 2em;
+	padding: 10px;
+	margin: 0.5em 0 1.5em 0;
+	box-sizing: border-box;
+	display: block;
+	border: 0.1em solid #C692BF;
+	transition: box-shadow 0.3s, border 0.3s;
+}
+
+input:focus {
+	border: solid 1px #9F5291;
+	box-shadow: 0 0 5px 1px #969696;
+}
+
+input::last-child {
+	margin-bottom: 0;
+}
+
+/* header, main {
+	max-width: 560px;
+	width: 75%;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+} */
+
+header, main {
+	max-width: 560px;
+	width: 75%;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	align-items: center;
+}

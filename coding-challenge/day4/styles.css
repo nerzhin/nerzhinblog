@@ -94,14 +94,6 @@ input::last-child {
 	margin-bottom: 0;
 }
 
-/* header, main {
-	max-width: 560px;
-	width: 75%;
-	margin-right: auto;
-	margin-left: auto;
-	text-align: center;
-} */
-
 header, main {
 	max-width: 560px;
 	width: 75%;
@@ -110,4 +102,39 @@ header, main {
 	flex-direction: column;
 	flex-wrap: nowrap;
 	align-items: center;
+}
+
+/* media q */
+
+@media only screen and (max-width : 655px) {
+	h1 {
+		font-size: 2em;
+	}
+
+	small {
+		font-size: 1em;
+	}
+}
+
+@media only screen and (max-width : 471px) {
+	small {
+		font-size: 0.6em;
+	}
+
+	.btn {
+		width: 100%;
+	}
+
+	input {
+		width: 100%;
+	}
+}
+
+@media only screen and (max-width : 328px) {
+	h1 {
+		font-size: 1em;
+	}
+	small {
+		display: none;
+	}
 }

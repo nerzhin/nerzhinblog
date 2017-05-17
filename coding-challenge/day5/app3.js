@@ -15,13 +15,13 @@ function getData() {
 		fetch(api)
 	.then(blob => blob.json())
 	.then(data => secretWord = data.word);
-	secretWord.toLowerCase();
+	secretWord = secretWord.toLowerCase();
 };
 
 function showSecretWord() {
 	for (let i=0; i < secretWord.length; i++) {
 	let elem = document.createElement('div');
-	elem.className = 'letter-'+i;
+	elem.className = 'letter letter-'+i;
 	elem.textContent = '*';
 	playground.appendChild(elem);
 };
@@ -43,9 +43,23 @@ function letterCounter() {
 function checkTheLetter() {
 	let letter = this.textContent.toLowerCase();
 	if (secretWord.indexOf(letter) == -1) {
-		
+		this.removeEventListener('click', checkTheLetter);
+		this.style.backgroundColor = '#FF4136';
+		this.style.borderColor = '#85144b';
+		this.disabled = true;
+		stats.wrongGuessed++;
+		if (stats.wrongGuessed == stats.maxAttempts) {
+			gameOverLost();
+		};
 	} else {
-
+		this.removeEventListener('click', checkTheLetter);
+		this.style.backgroundColor = 'lightgreen';
+		this.style.borderColor = 'darkgreen';
+		this.disabled = true;
+		rightLetter(letter);
+		if (stats.maxFailed <= 0) { 
+			gameOverWon(); 
+		}; //отгадана последняя буква
 	};
 };
 
@@ -59,17 +73,28 @@ function rightLetter(value) {
 		for (let j = 0; j < indexes.length; j++) {
 			playground.childNodes[indexes[j]].textContent = secretWord[indexes[j]];
 		};
-};
-
-function wrongLetter(value) {
-	stats.wrongGuessed++;
+	stats.maxFailed--;
 };
 
 function clearPlayground() {
 	while (playground.firstChild) {
 			playground.removeChild(playground.firstChild)
 		};
+	document.querySelector('.keyboard').style.display = 'none';
+	document.querySelectorAll('.row button').forEach(btn => {
+		btn.style.backgroundColor = 'yellow';
+		btn.style.borderColor = 'blue';
+		btn.disabled = false;
+	});
+	addListeners();
+
+	//кнопку хеллоу прячем -> кнопку начать заново создаём
 };
+
+function gameOverLost() {
+
+};
+
 
 
 document.querySelector('#fff').addEventListener('click', function() {
@@ -77,33 +102,36 @@ document.querySelector('#fff').addEventListener('click', function() {
 	showSecretWord();
 });
 
-keyboardBtnsFirstRow[1].addEventListener('click', checkTheLetter);
-keyboardBtnsFirstRow[2].addEventListener('click', checkTheLetter);
-keyboardBtnsFirstRow[3].addEventListener('click', checkTheLetter);
-keyboardBtnsFirstRow[4].addEventListener('click', checkTheLetter);
-keyboardBtnsFirstRow[5].addEventListener('click', checkTheLetter);
-keyboardBtnsFirstRow[6].addEventListener('click', checkTheLetter);
-keyboardBtnsFirstRow[7].addEventListener('click', checkTheLetter);
-keyboardBtnsFirstRow[8].addEventListener('click', checkTheLetter);
-keyboardBtnsFirstRow[9].addEventListener('click', checkTheLetter);
-keyboardBtnsFirstRow[10].addEventListener('click', checkTheLetter);
+function addListeners() {
+	keyboardBtnsFirstRow[1].addEventListener('click', checkTheLetter);
+	keyboardBtnsFirstRow[2].addEventListener('click', checkTheLetter);
+	keyboardBtnsFirstRow[3].addEventListener('click', checkTheLetter);
+	keyboardBtnsFirstRow[4].addEventListener('click', checkTheLetter);
+	keyboardBtnsFirstRow[5].addEventListener('click', checkTheLetter);
+	keyboardBtnsFirstRow[6].addEventListener('click', checkTheLetter);
+	keyboardBtnsFirstRow[7].addEventListener('click', checkTheLetter);
+	keyboardBtnsFirstRow[8].addEventListener('click', checkTheLetter);
+	keyboardBtnsFirstRow[9].addEventListener('click', checkTheLetter);
+	keyboardBtnsFirstRow[10].addEventListener('click', checkTheLetter);
 
-keyboardBtnsSecondRow[1].addEventListener('click', checkTheLetter);
-keyboardBtnsSecondRow[2].addEventListener('click', checkTheLetter);
-keyboardBtnsSecondRow[3].addEventListener('click', checkTheLetter);
-keyboardBtnsSecondRow[4].addEventListener('click', checkTheLetter);
-keyboardBtnsSecondRow[5].addEventListener('click', checkTheLetter);
-keyboardBtnsSecondRow[6].addEventListener('click', checkTheLetter);
-keyboardBtnsSecondRow[7].addEventListener('click', checkTheLetter);
-keyboardBtnsSecondRow[8].addEventListener('click', checkTheLetter);
-keyboardBtnsSecondRow[9].addEventListener('click', checkTheLetter);
+	keyboardBtnsSecondRow[1].addEventListener('click', checkTheLetter);
+	keyboardBtnsSecondRow[2].addEventListener('click', checkTheLetter);
+	keyboardBtnsSecondRow[3].addEventListener('click', checkTheLetter);
+	keyboardBtnsSecondRow[4].addEventListener('click', checkTheLetter);
+	keyboardBtnsSecondRow[5].addEventListener('click', checkTheLetter);
+	keyboardBtnsSecondRow[6].addEventListener('click', checkTheLetter);
+	keyboardBtnsSecondRow[7].addEventListener('click', checkTheLetter);
+	keyboardBtnsSecondRow[8].addEventListener('click', checkTheLetter);
+	keyboardBtnsSecondRow[9].addEventListener('click', checkTheLetter);
 
-keyboardBtnsThirdRow[1].addEventListener('click', checkTheLetter);
-keyboardBtnsThirdRow[2].addEventListener('click', checkTheLetter);
-keyboardBtnsThirdRow[3].addEventListener('click', checkTheLetter);
-keyboardBtnsThirdRow[4].addEventListener('click', checkTheLetter);
-keyboardBtnsThirdRow[5].addEventListener('click', checkTheLetter);
-keyboardBtnsThirdRow[6].addEventListener('click', checkTheLetter);
-keyboardBtnsThirdRow[7].addEventListener('click', checkTheLetter);
+	keyboardBtnsThirdRow[1].addEventListener('click', checkTheLetter);
+	keyboardBtnsThirdRow[2].addEventListener('click', checkTheLetter);
+	keyboardBtnsThirdRow[3].addEventListener('click', checkTheLetter);
+	keyboardBtnsThirdRow[4].addEventListener('click', checkTheLetter);
+	keyboardBtnsThirdRow[5].addEventListener('click', checkTheLetter);
+	keyboardBtnsThirdRow[6].addEventListener('click', checkTheLetter);
+	keyboardBtnsThirdRow[7].addEventListener('click', checkTheLetter);
+};
 
 getData();
+addListeners();

@@ -130,7 +130,7 @@ encryptInput.addEventListener('change', displayEncrypt);
 encryptInput.addEventListener('keyup', displayEncrypt);
 decryptInput.addEventListener('change', displayDecrypt);
 decryptInput.addEventListener('keyup', displayDecrypt);
-copyButton.addEventListener('click', function() {
-	decryptInput.select();
-	document.execCommand('copy');
-});
+//copyButton.addEventListener('click', function() {
+//	decryptInput.select();
+//	document.execCommand('copy');
+//});

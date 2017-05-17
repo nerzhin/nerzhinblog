@@ -87,20 +87,59 @@ function clearPlayground() {
 		btn.disabled = false;
 	});
 	addListeners();
-
+	getData();
+	document.querySelector('#start').style.display = 'none';
+	changingButtons();
 	//кнопку хеллоу прячем -> кнопку начать заново создаём
 };
 
 function gameOverLost() {
-
+	let elem = document.createElement('div');
+	elem.className = 'game-lost';
+	elem.textContent = 'You are lost, haha';
+	document.querySelector('main').appendChild(elem);
+	clearPlayground();
 };
 
+function gameOverWon() {
+	let elem = document.createElement('div');
+	elem.className = 'game-won';
+	elem.textContent = 'You won, get lost';
+	document.querySelector('main').appendChild(elem);
+	clearPlayground();
+};
 
-
-document.querySelector('#fff').addEventListener('click', function() {
+document.querySelector('#start').addEventListener('click', function() {
 	document.querySelector('.keyboard').style.display = 'block';
 	showSecretWord();
+	if (document.querySelector('.game-lost')) {
+		document.querySelector('main').removeChild(document.querySelector('.game-lost'));
+	};
+	if (document.querySelector('.game-won')) {
+		document.querySelector('main').removeChild(document.querySelector('.game-won'));
+	};
 });
+
+function changingButtons() {
+	let refreshBtn = document.createElement('button');
+	refreshBtn.type = 'button';
+	refreshBtn.textContent = 'Start new';
+	refreshBtn.className = 'start-new';
+	refreshBtn.addEventListener('click', function() {
+		document.querySelector('.keyboard').style.display = 'block';
+		showSecretWord();
+		if (document.querySelector('.game-lost')) {
+			document.querySelector('main').removeChild(document.querySelector('.game-lost'));
+		};
+		if (document.querySelector('.game-won')) {
+			document.querySelector('main').removeChild(document.querySelector('.game-won'));
+		};
+		document.querySelector('#start').style.display = 'block';
+		document.querySelector('.buttons').removeChild(document.querySelector('.start-new'));
+	});
+	document.querySelector('.buttons').appendChild(refreshBtn);
+};
+
 
 function addListeners() {
 	keyboardBtnsFirstRow[1].addEventListener('click', checkTheLetter);

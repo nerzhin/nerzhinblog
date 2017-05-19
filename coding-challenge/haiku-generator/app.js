@@ -24,40 +24,77 @@ let haiku = [
 	{
 		title: 'Third Row',
 		pronoun: '',
-		nounSameContext: ''
+		nounSameContext: '',
+		verb: ''
 	}
 ];
 
+let link;
+
 function getFirstRow() {
 	fetch(randomWord.pronoun).then(blob => blob.json()).then(data => haiku[0].pronoun = data.word);
-	fetch(randomWord.noun).then(blob => blob.json()).then(data => haiku[0].noun = data.word);
+	fetch(randomWord.noun).then(blob => blob.json()).then(data => {
+		haiku[0].noun = data.word;
+		link = String(relatedWordsSt + haiku[0].noun + relatedWordEnd);
+	});
 	fetch(randomWord.verb).then(blob => blob.json()).then(data => haiku[0].verb = data.word);
 };
 
 function getSecondRow() {
 	fetch(randomWord.adjective).then(blob => blob.json()).then(data => haiku[1].adjective = data.word);
-	fetch(relatedWordsSt + haiku[0].noun + relatedWordEnd).then(blob => blob.json()).then(data => {
-		let counter = data[2].words.length;
-		let random = Math.floor(Math.random() * counter) + 1;
-		haiku[1].nounSynonym = data[2].words[random];
-	});
+	fetch(link).then(blob => blob.json()).then(data => { 
+		console.log(data);
+    if (data) {
+			let arr = data.filter(value => {
+				value.relationshipType == "synonym"
+			});
+			console.log(arr);
+			if (arr > 0) {
+				let random = Math.floor(Math.random()*arr[0].words.length) + 1;
+				console.log(random);
+				haiku[1].nounSynonym = arr[0].words[random];
+				console.log(arr[0].words[random]);
+			} else {
+						fetch('https://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=false&includePartOfSpeech=noun&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=4&maxLength=12&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5').then(blob=>blob.json()).then(data=> haiku[1].nounSynonym = data.word)
+
+	};
+
+	} else {
+		fetch('https://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=false&includePartOfSpeech=noun&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=4&maxLength=12&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5').then(blob=>blob.json()).then(data=> haiku[1].nounSynonym = data.word)
+	};
+});
 	fetch(randomWord.verb).then(blob => blob.json()).then(data => haiku[1].verb = data.word);
 };
 
 function getThirdRow() {
 	fetch(randomWord.pronoun).then(blob => blob.json()).then(data => haiku[2].pronoun = data.word);
-	fetch(relatedWordsSt + haiku[0].noun + relatedWordEnd).then(blob => blob.json()).then(data => {
-		let counter = data[4].words.length;
-		let random = Math.floor(Math.random() * counter) + 1;
-		haiku[2].nounSameContext = data[4].words[random];
-	});
+	fetch(link).then(blob => blob.json()).then(data => { 
+    console.log(data);
+    if (data) {
+		let arr = data.filter(value => {
+			value.relationshipType == "same-context"
+		});
+		console.log(arr);
+		
+		if (arr > 0) {
+			let random = Math.floor(Math.random()*arr[0].words.length) + 1;
+			console.log(random);
+			haiku[2].nounSameContext = arr[0].words[random];
+			console.log(arr[0].words[random]);
+		} else {
+					fetch('https://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=false&includePartOfSpeech=noun&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=4&maxLength=12&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5').then(blob=>blob.json()).then(data=> haiku[2].nounSameContext = data.word)
+
 };
+
+	} else {
+		fetch('https://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=false&includePartOfSpeech=noun&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=4&maxLength=12&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5').then(blob=>blob.json()).then(data=> haiku[2].nounSameContext = data.word)
+	};
+});
+	fetch(randomWord.verb).then(blob => blob.json()).then(data => haiku[2].verb = data.word);
+};
+//https://atomiks.github.io/tippyjs/
 
 getFirstRow();
 getSecondRow();
 getThirdRow();
-console.log(haiku[0].pronoun + ' ' + haiku[0].noun + ' ' + haiku[0].verb + ',');
-console.log(haiku[1].adjective + ' ' + haiku[1].nounSynonym + ' ' + haiku[1].verb + ',');
-console.log(haiku[2].pronoun + ' ' + haiku[2].nounSameContext + '.');
 
-https://atomiks.github.io/tippyjs/

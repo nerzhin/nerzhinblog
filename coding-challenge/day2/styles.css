@@ -1,33 +1,157 @@
-body {
-	font-family: 'Roboto Condensed', sans-serif;
-	background-color: white;
-	color: #1D0D08;
-	background-image: url('pattern.png');
+/* smartphone */
+@media only screen and (min-width : 320px) {
+	html { font-size: 1.875em; }
+	body {
+		font-family: 'Roboto Condensed', sans-serif;
+		background-color: white;
+		color: #1D0D08;
+		background-image: url('pattern.png');
+		font-weight: 700;
+		line-height: 1.45;
+	}
+
+	h1 {
+		margin-top: 0;
+		margin-left: 0.2em;
+		line-height: 1.2;
+		font-size: 2.998em;
+		color: #BA311C;
+		font-weight: inherit;
+		text-transform: uppercase;
+	}
+
+	.enemy-move {
+		width: 228px;
+		margin: 0 auto;
+	}
+
+	.your-pick {
+		margin-right: 20px;
+	}
+
+	.enemy header {
+		width: 80%;
+		margin: 0 auto;
+	}
+
+	.enemy .enemy-photo {
+		display: block;
+		margin: 0 auto;
+	}
+
+	.health-bar {
+		margin-right: auto;
+		margin-left: auto;
+		margin-top: 2em;
+		width: 75%;
+		height: 1.4em;
+		border: 2px solid black;
+		text-align: center;
+		color: #4E351F;
+		font-size: 1.1em;
+		font-weight: 400;
+		margin-bottom: 2em;
+	}
+
+	.special-moves {
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+
+	.special-moves-title {
+		display: block;
+		margin: 0 auto;
+	}
+
+	.health-bar div {
+		width: 100%;
+		height: 100%;
+		background-color: #BA311C;
+	}
+
+	.enemy-photo {
+		width: 350px;
+		height: 350px;
+		border: 2px solid black;
+		border-radius: 50%;
+		background-color: lightgray;
+	}
+
+	.statistics {
+		margin-top: 3em;
+		font-size: 1.1em;
+		font-weight: 400;
+		text-align: center
+	}
 }
 
-h1 {
-	color: #BA311C;
+/* tablet */
+@media only screen and (min-width : 768px) {
+	.enemy-photo {
+		width: 200px;
+		height: 200px;
+	}
+
+	h1 {
+		font-size: 1.9em;
+	}
+
+	.health-bar {
+		margin-top: 1em;
+		margin-bottom: 1em;
+		width: 60%;
+	}
+
 }
 
-.health-bar {
+/* desktop */
+@media only screen and (min-width : 1024px) {
+	.enemy-photo {
+		width: 100px;
+		height: 100px;
+	}
+
+	h1 {
+		font-size: 1em;
+	}
+
+	.health-bar {
+		margin-top: 0.4em;
+		margin-bottom: 0.4em;
+		width: 35%;
+		height: 1.3em;
+		font-size: 0.6em;
+	}
+
+	.enemy-move {
+		width: 166px;
+	}
+
+	.special-moves-title {
+		width: 60%;
+	}
+
+	.enemy-move img,
+	#rock,
+	#paper,
+	#scissors,
+	#lizard,
+	#spock {
+		width: 73px;
+		height: 73px;
+	}
+
 	
-	width: 200px;
-	height: 20px;
-	border: 2px solid black;
-	text-align: center;
-	color: #4E351F;
+	
+	.statistics {
+		font-size: 0.6em;
+	}
 }
 
-.health-bar div {
-	width: 100%;
-	height: 100%;
-	background-color: #BA311C;
-}
+/* wide screen or TV */
+@media only screen and (max-width : 1440px) {
 
-.enemy-photo {
-	width: 100px;
-	height: 100px;
-	border: 2px solid black;
-	border-radius: 50%;
-	background-color: lightgray;
 }

@@ -5,37 +5,56 @@ const randomWord = {
 	adjective: 'https://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=false&includePartOfSpeech=adjective&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=4&maxLength=12&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5'
 };
 
-const relatedWordsSt = 'https://api.wordnik.com/v4/word.json/';
+/*const relatedWordsSt = 'https://api.wordnik.com/v4/word.json/';
 const relatedWordEnd = '/relatedWords?useCanonical=false&limitPerRelationshipType=10&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5';
-
+*/ 
 let haiku = [
 	{
 		title: 'First Row',
 		pronoun: '',
+		pronounDef: '',
 		noun: '',
-		verb: ''
+		nounDef: '',
+		verb: '',
+		verbDef: '',
+		nounLink: '',
+		pronounLink: '',
+		verbLink: ''
 	},
 	{
 		title: 'Second Row',
 		adjective: '',
+		adjectiveDef: '',
+		adjectiveLink: '',
 		noun: '',
-		verb: ''
+		nounDef: '',
+		nounLink: '',
+		verb: '',
+		verbDef: '',
+		verbLink: ''
 	},
 	{
 		title: 'Third Row',
 		pronoun: '',
+		pronounDef: '',
+		pronounLink: '',
 		noun: '',
-		verb: ''
+		nounLink: '',
+		nounDef: '',
+		verb: '',
+		verbLink: '',
+		verbDef: ''
 	}
 ];
-
-let link;
 
 function getFirstRow() {
 	fetch(randomWord.pronoun).then(blob => blob.json()).then(data => haiku[0].pronoun = data.word);
 	fetch(randomWord.noun).then(blob => blob.json()).then(data => {
-		haiku[0].noun = data.word });
+		haiku[0].noun = data.word;
+		haiku[0].link = 'https://api.wordnik.com/v4/word.json/' + data.word +'/definitions?limit=1&includeRelated=true&useCanonical=false&includeTags=false&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5';
+		 });
 	fetch(randomWord.verb).then(blob => blob.json()).then(data => haiku[0].verb = data.word);
+	
 };
 
 function getSecondRow() {
@@ -95,12 +114,23 @@ function getThirdRow() {
 	fetch(randomWord.verb).then(blob => blob.json()).then(data => haiku[2].verb = data.word);
 };
 
-
-function definition(word) {
-
-}
+function getDefinitions() {
+	
+	fetch(haiku[0].link)
+		.then(blob => blob.json())
+		.then(data => haiku[0].nounDef = data[0].text);
+};
 
 getFirstRow();
 getSecondRow();
 getThirdRow();
 
+//const firstRowSection = document.querySelector('.first-row');
+//const firstRowSection = document.querySelector('.first-row');
+//const firstRowSection = document.querySelector('.first-row');
+
+function showHaiku() {
+
+}
+
+//document.querySelector('button').addEventListener('click', showHaiku);

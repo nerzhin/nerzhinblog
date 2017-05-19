@@ -12,55 +12,67 @@ let haiku = [
 	{
 		title: 'First Row',
 		pronoun: '',
-		pronounDef: '',
+		/*pronounDef: '',*/
 		noun: '',
-		nounDef: '',
+		/*nounDef: '',*/
 		verb: '',
-		verbDef: '',
-		nounLink: '',
+		/*verbDef: '',*/
+		/*nounLink: '',
 		pronounLink: '',
-		verbLink: ''
+		verbLink: ''*/
 	},
 	{
 		title: 'Second Row',
 		adjective: '',
-		adjectiveDef: '',
-		adjectiveLink: '',
+		/*adjectiveDef: '',
+		adjectiveLink: '',*/
 		noun: '',
-		nounDef: '',
-		nounLink: '',
+		/*nounDef: '',
+		nounLink: '',*/
 		verb: '',
-		verbDef: '',
-		verbLink: ''
+		/*verbDef: '',
+		verbLink: ''*/
 	},
 	{
 		title: 'Third Row',
 		pronoun: '',
-		pronounDef: '',
-		pronounLink: '',
+		/*pronounDef: '',
+		pronounLink: '',*/
 		noun: '',
-		nounLink: '',
-		nounDef: '',
+		/*nounLink: '',
+		nounDef: '',*/
 		verb: '',
-		verbLink: '',
-		verbDef: ''
+		/*verbLink: '',
+		verbDef: ''*/
 	}
 ];
 
 function getFirstRow() {
-	fetch(randomWord.pronoun).then(blob => blob.json()).then(data => haiku[0].pronoun = data.word);
+	fetch(randomWord.pronoun).then(blob => blob.json()).then(data => {
+		haiku[0].pronoun = data.word;
+		haiku[0].pronounLink = 'https://api.wordnik.com/v4/word.json/' + data.word +'/definitions?limit=1&includeRelated=true&useCanonical=false&includeTags=false&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5';
+	});
 	fetch(randomWord.noun).then(blob => blob.json()).then(data => {
 		haiku[0].noun = data.word;
-		haiku[0].link = 'https://api.wordnik.com/v4/word.json/' + data.word +'/definitions?limit=1&includeRelated=true&useCanonical=false&includeTags=false&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5';
+		haiku[0].nounLink = 'https://api.wordnik.com/v4/word.json/' + data.word +'/definitions?limit=1&includeRelated=true&useCanonical=false&includeTags=false&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5';
 		 });
-	fetch(randomWord.verb).then(blob => blob.json()).then(data => haiku[0].verb = data.word);
+	fetch(randomWord.verb).then(blob => blob.json()).then(data => {
+		haiku[0].verb = data.word;
+		haiku[0].verbLink = 'https://api.wordnik.com/v4/word.json/' + data.word +'/definitions?limit=1&includeRelated=true&useCanonical=false&includeTags=false&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5';
+	});
 	
 };
 
 function getSecondRow() {
-	fetch(randomWord.adjective).then(blob => blob.json()).then(data => haiku[1].adjective = data.word);
+	fetch(randomWord.adjective).then(blob => blob.json()).then(data => {
+		haiku[1].adjective = data.word;
+		haiku[1].adjectiveLink = 'https://api.wordnik.com/v4/word.json/' + data.word +'/definitions?limit=1&includeRelated=true&useCanonical=false&includeTags=false&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5';
+	});
 	fetch(randomWord.noun).then(blob => blob.json()).then(data => {
-		haiku[1].noun = data.word });
+		haiku[1].noun = data.word;
+		haiku[1].nounLink = 'https://api.wordnik.com/v4/word.json/' + data.word +'/definitions?limit=1&includeRelated=true&useCanonical=false&includeTags=false&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5';
+	
+		 });
 	/*fetch(link).then(blob => blob.json()).then(data => { 
 		console.log(data);
     if (data) {
@@ -82,13 +94,24 @@ function getSecondRow() {
 		fetch('https://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=false&includePartOfSpeech=noun&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=4&maxLength=12&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5').then(blob=>blob.json()).then(data=> haiku[1].nounSynonym = data.word)
 	};
 });*/
-	fetch(randomWord.verb).then(blob => blob.json()).then(data => haiku[1].verb = data.word);
+	fetch(randomWord.verb).then(blob => blob.json()).then(data => {
+		haiku[1].verb = data.word;
+		haiku[1].verbLink = 'https://api.wordnik.com/v4/word.json/' + data.word +'/definitions?limit=1&includeRelated=true&useCanonical=false&includeTags=false&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5';
+	
+	});
 };
 
 function getThirdRow() {
-	fetch(randomWord.pronoun).then(blob => blob.json()).then(data => haiku[2].pronoun = data.word);
+	fetch(randomWord.pronoun).then(blob => blob.json()).then(data => {
+		haiku[2].pronoun = data.word;
+		haiku[2].pronounLink = 'https://api.wordnik.com/v4/word.json/' + data.word +'/definitions?limit=1&includeRelated=true&useCanonical=false&includeTags=false&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5';
+	
+	});
 	fetch(randomWord.noun).then(blob => blob.json()).then(data => {
-		haiku[2].noun = data.word });
+		haiku[2].noun = data.word;
+		haiku[2].nounLink = 'https://api.wordnik.com/v4/word.json/' + data.word +'/definitions?limit=1&includeRelated=true&useCanonical=false&includeTags=false&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5';
+	
+		});
 	/*fetch(link).then(blob => blob.json()).then(data => { 
     console.log(data);
     if (data) {
@@ -111,26 +134,59 @@ function getThirdRow() {
 		fetch('https://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=false&includePartOfSpeech=noun&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=4&maxLength=12&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5').then(blob=>blob.json()).then(data=> haiku[2].nounSameContext = data.word)
 	};
 });*/
-	fetch(randomWord.verb).then(blob => blob.json()).then(data => haiku[2].verb = data.word);
+	fetch(randomWord.verb).then(blob => blob.json()).then(data => {
+		haiku[2].verb = data.word;
+		haiku[2].verbLink = 'https://api.wordnik.com/v4/word.json/' + data.word +'/definitions?limit=1&includeRelated=true&useCanonical=false&includeTags=false&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5';
+	
+	});
 };
 
-function getDefinitions() {
-	
-	fetch(haiku[0].link)
+/*function getDefinitions(link, partOfSpeech) {
+	fetch(link)
 		.then(blob => blob.json())
-		.then(data => haiku[0].nounDef = data[0].text);
-};
+		.then(data => partOfSpeech = data[0].text);
+};*/
 
 getFirstRow();
 getSecondRow();
 getThirdRow();
+/*
+getDefinitions(haiku[0].nounLink, haiku[0].nounDef);
+getDefinitions(haiku[0].pronounLink, haiku[0].pronounDef);
+getDefinitions(haiku[0].verbLink, haiku[0].verbDef);
 
-//const firstRowSection = document.querySelector('.first-row');
-//const firstRowSection = document.querySelector('.first-row');
-//const firstRowSection = document.querySelector('.first-row');
+getDefinitions(haiku[1].adjectiveLink, haiku[1].adjectiveDef);
+getDefinitions(haiku[1].nounLink, haiku[1].nounDef);
+getDefinitions(haiku[1].verbLink, haiku[1].verbDef);
 
-function showHaiku() {
+getDefinitions(haiku[2].pronounLink, haiku[2].pronounDef);
+getDefinitions(haiku[2].nounLink, haiku[2].nounDef);
+getDefinitions(haiku[2].verbLink, haiku[2].verbDef);*/
 
-}
 
-//document.querySelector('button').addEventListener('click', showHaiku);
+const firstRowSection = document.querySelector('.first-row');
+const secondRowSection = document.querySelector('.second-row');
+const thirdRowSection = document.querySelector('.third-row');
+const btn = document.querySelector('button');
+
+function firstOne() {
+	firstRowSection.textContent = haiku[0].pronoun + ' ' + haiku[0].noun + ' ' + haiku[0].verb + ',';
+};
+
+function secondOne() {
+	secondRowSection.textContent = haiku[1].adjective + ' ' + haiku[1].noun + ' ' + haiku[1].verb + ',';
+};
+
+function thirdOne() {
+	thirdRowSection.textContent = haiku[2].pronoun + ' ' + haiku[2].noun + ' ' + haiku[2].verb + '.';
+};
+
+function all() {
+	firstOne();
+	secondOne();
+	thirdOne();
+};
+
+btn.addEventListener('click', function() {
+	all();	
+});

@@ -18,13 +18,13 @@ let haiku = [
 	{
 		title: 'Second Row',
 		adjective: '',
-		nounSynonym: '',
+		noun: '',
 		verb: ''
 	},
 	{
 		title: 'Third Row',
 		pronoun: '',
-		nounSameContext: '',
+		noun: '',
 		verb: ''
 	}
 ];
@@ -34,15 +34,15 @@ let link;
 function getFirstRow() {
 	fetch(randomWord.pronoun).then(blob => blob.json()).then(data => haiku[0].pronoun = data.word);
 	fetch(randomWord.noun).then(blob => blob.json()).then(data => {
-		haiku[0].noun = data.word;
-		link = String(relatedWordsSt + haiku[0].noun + relatedWordEnd);
-	});
+		haiku[0].noun = data.word });
 	fetch(randomWord.verb).then(blob => blob.json()).then(data => haiku[0].verb = data.word);
 };
 
 function getSecondRow() {
 	fetch(randomWord.adjective).then(blob => blob.json()).then(data => haiku[1].adjective = data.word);
-	fetch(link).then(blob => blob.json()).then(data => { 
+	fetch(randomWord.noun).then(blob => blob.json()).then(data => {
+		haiku[1].noun = data.word });
+	/*fetch(link).then(blob => blob.json()).then(data => { 
 		console.log(data);
     if (data) {
 			let arr = data.filter(value => {
@@ -62,13 +62,15 @@ function getSecondRow() {
 	} else {
 		fetch('https://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=false&includePartOfSpeech=noun&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=4&maxLength=12&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5').then(blob=>blob.json()).then(data=> haiku[1].nounSynonym = data.word)
 	};
-});
+});*/
 	fetch(randomWord.verb).then(blob => blob.json()).then(data => haiku[1].verb = data.word);
 };
 
 function getThirdRow() {
 	fetch(randomWord.pronoun).then(blob => blob.json()).then(data => haiku[2].pronoun = data.word);
-	fetch(link).then(blob => blob.json()).then(data => { 
+	fetch(randomWord.noun).then(blob => blob.json()).then(data => {
+		haiku[2].noun = data.word });
+	/*fetch(link).then(blob => blob.json()).then(data => { 
     console.log(data);
     if (data) {
 		let arr = data.filter(value => {
@@ -89,10 +91,14 @@ function getThirdRow() {
 	} else {
 		fetch('https://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=false&includePartOfSpeech=noun&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=4&maxLength=12&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5').then(blob=>blob.json()).then(data=> haiku[2].nounSameContext = data.word)
 	};
-});
+});*/
 	fetch(randomWord.verb).then(blob => blob.json()).then(data => haiku[2].verb = data.word);
 };
-//https://atomiks.github.io/tippyjs/
+
+
+function definition(word) {
+
+}
 
 getFirstRow();
 getSecondRow();

@@ -1,0 +1,24 @@
+/* smartphone */
+@media only screen and (min-width : 320px) {
+
+
+}
+
+/* tablet */
+@media only screen and (min-width : 768px) {
+
+
+}
+
+/* desktop */
+@media only screen and (min-width : 1024px) {
+
+
+}
+
+/* wide screen or TV */
+@media only screen and (max-width : 1440px) {
+
+
+
+}

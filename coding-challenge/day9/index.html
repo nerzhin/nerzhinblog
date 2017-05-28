@@ -6,16 +6,35 @@
   <meta name="description" content="Coding challenge - 9th day">
   <meta name="author" content="Gleb Nerzhin">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Raleway:600" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/skeleton.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+<div class="container">
+	<section class="info">
+		<div class="row">
+			<div class="eleven columns">
+				<strong>Collatz Conjecture</strong> or the <strong>Syracuse problem</strong> is still unsolved problem in mathematic. Jeffrey Lagarias said: <em>this is an extraordinarily difficult problem, completely out of reach of present day mathematics.</em>
+			</div>
+			<div class="one columns author">
+				<strong>nerzhin</strong>
+			</div>
+		</div>
+	</section>
 
+	<section class="inputs">
+		<label for="value">Enter the number: </label>
+		<input id="value" class="value u-full-width" type="number"><button class="post fuller-button blue u-full-width">get</button>
+	</section>
 
-
-
+	<section class="answer">
+		<div class="answer"><p></p></div>
+		<div id="chart"></div>
+	</section>
+</div>
+<script src="js/plotly-latest.min.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

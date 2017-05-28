@@ -56,8 +56,8 @@ function drawChart() {
     color: 'blue'
   },
   autosize: false,
-  width: 250,
-  height: 250,
+  width: 280,
+  height: 280,
   margin: {
     l: 10/*50*/,
     r: 10/*50*/,

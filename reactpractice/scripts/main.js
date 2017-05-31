@@ -5,7 +5,10 @@ let ReactRouter = require('react-router');
 let Router = ReactRouter.Router;
 let Route = ReactRouter.Route;
 let Navigation = ReactRouter.Navigation;
+let History = ReactRouter.History;
+
 let createBrowserHistory = require('history/lib/createBrowserHistory');
+let littleHelp = require('./helpers');
 
 let elem = document.querySelector('main');
 
@@ -17,7 +20,7 @@ let App = React.createClass({
 			return (
 				<div className="catch-of-the-day">
 					<div className="menu">
-						<Header/>
+						<Header tagline="Fresh Seafood Market" />
 					</div>
 					<Order/>
 					<Inventory/>
@@ -33,7 +36,15 @@ let Header = React.createClass({
 
 		render: function() {
 			return (
-				<p>Header</p>
+				<header className="top">
+					<h1>Catch
+						<span className="ofThe">
+							<span className="of">of</span>
+							<span className="the">the</span>
+						</span>
+						Day</h1>
+					<h3 className="tagline"><span>{this.props.tagline}</span></h3>
+				</header>
 				)
 		}
 });
@@ -62,16 +73,24 @@ let Inventory = React.createClass({
 
 /* <StorePicker/> */
 let StorePicker = React.createClass({
+	mixins : [History],
+	goToStore: function(event) {
+		let storeId = this.refs.storeId.value;
+		event.preventDefault();
+		
+		this.history.pushState(null, '/store/'+storeId);
+
+	},
 
 	render: function() {
 		{/* creating store */}
 		return (
 
-			<form>
+			<form className="store-selector" onSubmit={this.goToStore}>
 
 				<h2>Choose a store</h2>
-				<input type="text" ref="storeId" required />
-				<input type="submit" />
+				<input type="text" ref="storeId" defaultValue={littleHelp.randomText()} required />
+				<input type="Submit" />
 			</form>
 		)
 	}
@@ -82,7 +101,9 @@ let StorePicker = React.createClass({
 let NotFound = React.createClass({
 	render: function() {
 		return (
-			<h1>Page Not Found, try kys</h1>
+			<div>
+				<h1>Page Not Found, try kys</h1>
+			</div>
 		)
 	}
 });

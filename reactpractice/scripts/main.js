@@ -1,4 +1,4 @@
-let React = require('react');
+/*let React = require('react');
 let ReactDOM = require('react-dom');
 
 const pageField = document.querySelector('main');
@@ -12,4 +12,4 @@ let StorePicker = React.createClass({
 		}
 });
 
-ReactDOM.render(<StorePicker/>, pageField);
+ReactDOM.render(<StorePicker/>, pageField);*/

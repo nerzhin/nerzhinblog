@@ -53,7 +53,7 @@ let App = React.createClass({
 							{ Object.keys(this.state.fishes).map(this.renderFish) }
 						</ul>
 					</div>
-					<Order/>
+					<Order fishes={this.state.fishes} order={this.state.order}/>
 					<Inventory addFish={this.addFish} loadSamples={this.loadSamples}/>
 				</div>
 
@@ -84,9 +84,49 @@ let Header = React.createClass({
 
 let Order = React.createClass({
 
-		render: function() {
+		renderOrder: function(key) {
+			let fish = this.props.fishes[key];
+			let count = this.props.order[key];
+			if (!fish) {
+				return <li key={key}>Sorry, kys!</li>
+			};
+
 			return (
-				<p>Order</p>
+				<li>
+					{count}lbs
+					{fish.name}
+					<span className="price">{littleHelp.formatPrice(count * fish.price)}</span>
+				</li>
+				)
+		},
+
+		render: function() {
+			let orderIds = Object.keys(this.props.order);
+			let total = orderIds.reduce((prevTotal, key) => {
+				let fish = this.props.fishes[key];
+				let count = this.props.order[key];
+				let isAvailable = fish && fish.status === 'available';
+
+				if (fish && isAvailable) {
+					return prevTotal + (count * parseInt(fish.price) || 0);
+				};
+
+				return prevTotal;
+			}, 0);
+
+			return (
+				<div className="order-wrap">
+					<h2 className="order-title">Your order</h2>
+					<ul className="order">
+
+						{orderIds.map(this.renderOrder)}
+
+						<li className="total">
+							<strong>Total:</strong>
+							{littleHelp.formatPrice(total)}
+						</li>
+					</ul>
+				</div>
 				)
 		}
 });

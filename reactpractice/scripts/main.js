@@ -15,18 +15,20 @@ let elem = document.querySelector('main');
 /* Main app */
 
 let App = React.createClass({
+		
 		getInitialState: function() {
 			return {
 				fishes: {},
 				order: {}
 			}
 		},
+		
 		addFish: function(fish) {
-			let timeStamp = (new Date()).getTime();
-
-			this.state.fishes["fish-" + timeStamp] = fish;
-			this.setState({ fishes: this.state.fishes });
+			let timestamp = (new Date()).getTime();
+			this.state.fishes["fish-" + timestamp] = fish;
+			this.setState({ fishes : this.state.fishes });
 		},
+
 		render: function() {
 			return (
 				<div className="catch-of-the-day">
@@ -34,7 +36,7 @@ let App = React.createClass({
 						<Header tagline="Fresh Seafood Market" />
 					</div>
 					<Order/>
-					<Inventory/>
+					<Inventory addFish={this.addFish}/>
 				</div>
 
 			)

@@ -29,14 +29,27 @@ let App = React.createClass({
 			this.setState({ fishes : this.state.fishes });
 		},
 
+		loadSamples: function() {
+			this.setState({
+				fishes: require("./samples")
+			});
+		},
+
+		renderFish: function(key) {
+			return <Fish key={key} index={key} details={this.state.fishes[key]}/>
+		},
+
 		render: function() {
 			return (
 				<div className="catch-of-the-day">
 					<div className="menu">
 						<Header tagline="Fresh Seafood Market" />
+						<ul className="list-of-fishes">
+							{ Object.keys(this.state.fishes).map(this.renderFish) }
+						</ul>
 					</div>
 					<Order/>
-					<Inventory addFish={this.addFish}/>
+					<Inventory addFish={this.addFish} loadSamples={this.loadSamples}/>
 				</div>
 
 			)
@@ -82,10 +95,31 @@ let Inventory = React.createClass({
 				<div>
 					<h2>Inventory</h2>
 					<AddFishForm {...this.props}/>
+					<button onClick={this.props.loadSamples}>Load Sample Fishes</button>
 				</div>
 				)
 		}
 });
+
+/* Fish Component
+<Fish/>
+ */
+
+ let Fish = React.createClass({
+ 	render: function() {
+ 		let details = this.props.details;
+ 		return (
+ 			<li className="menu-fish">
+ 				<img src={details.image} alt={details.name}/>
+ 				<h3 className="fish-name">
+ 					{details.name}
+ 					<span className="price">{littleHelp.formatPrice(details.price)}</span>
+ 				</h3>
+ 				<p>{details.desc}</p>
+ 			</li>
+ 		)
+ 	}
+ })
 
 /* Add fish form 
 <AddFishForm/>

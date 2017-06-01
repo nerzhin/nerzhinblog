@@ -8,6 +8,10 @@ let littleHelpers = {
 
 	clearingText: function(text) {
 		return text.split(' ').join('-');
+	},
+
+	formatPrice: function(n) {
+		return '$' + (n/100).toFixed(2);
 	}
 };
 

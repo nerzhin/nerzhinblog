@@ -1,0 +1,32 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+main {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	width: 100%;
+}
+
+.floor-tile, .wall-tile {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: wrap;
+	align-content: center;
+	align-items: center;
+
+	width: 6em;
+	height: 6em;
+	margin: 0px;
+	padding: 0px;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
+.floor-tile { background-color: navy; }
+.wall-tile { background-color: tomato; }
